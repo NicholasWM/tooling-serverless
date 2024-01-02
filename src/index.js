@@ -1,17 +1,17 @@
-const { S3 } = require("./factory");
+"use strict";
+
+const { S3 } = require("./factory")
 
 
-module.exports.handler = async (event) => {
+module.exports.main = async (event) => {
   const allBuckets = await S3.listBuckets().promise()
-
-  console.log('FOUND: ', allBuckets)
+  console.log('found', allBuckets)
 
   return {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: allBuckets,
-        input: event,
+        allBuckets
       },
       null,
       2
